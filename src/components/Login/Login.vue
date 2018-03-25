@@ -23,7 +23,7 @@
                   <p class="ico_wrapper">
                   	<i class="ico ico_user"></i>
                   </p>
-    	    				<input type="text" class="phonenum">
+    	    				<input type="text" class="phonenum"placeholder="请输入手机号码">
               </div>
 	    			</div>
 	    			<div class="login_text">
@@ -31,7 +31,7 @@
                   <p class="ico_wrapper">
 	    	    				<i class="ico ico_pwd"></i>
 	    	    			</p>
-    	    				<input type="password" class="phonenum">
+    	    				<input type="password" class="phonenum" placeholder="请输入密码">
               </div>
 	    			</div>
 	    			<input class="login_btn" type="submit" value="企业登录">
@@ -145,6 +145,9 @@
 		  text-indent: 15px;
 		  font-size: 14px;
 		  color: #444;
+		  &::placeholder {
+			  color: #999;
+			}
 		}
 		
 		.login_btn {

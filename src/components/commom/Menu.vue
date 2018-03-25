@@ -5,7 +5,7 @@
 		    <div class="layout clearfix">
 		        <div class="fl category_index" v-if="showSort">
 		            <div class="category-title">企业购商品分类</div>
-		            <router-link to="../goodsList" class="menu-wrap">
+		            <!-- <router-link to="../goodsList" class="menu-wrap"> -->
 			            <div id="menu-wrap">
 				            	<ul class="menu">
 					            	<li v-for="i in 8" class="menu-item">
@@ -30,7 +30,7 @@
 					            	</ul>
 					            </div>
 			            </div>
-		            </router-link>
+		            <!-- </router-link> -->
 		        </div>
 		        <div class="navitem fl">
 		            <ul class="navitems-group fl">

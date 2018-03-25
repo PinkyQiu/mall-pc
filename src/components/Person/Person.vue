@@ -19,6 +19,33 @@
               @click="switchTab(tab.value)"
             >{{tab.label}}</li>
         </ul>
+        <div class="content">
+          <div id="order" v-if="currentTab === 'order'">
+            <div class="top clearfix">
+              <div class="left fl">
+                <img src="../images/goodsDepic2.jpg" alt="" class="pic">
+              </div>
+              <div class="right fl">
+                <p class="name">ID520-15 I58250 4G 1T+128G MX150-2G 银 高清W10</p>
+                <p class="type">型号：64寸高清银色</p>
+                <p class="num">
+                  <span>数量：3</span>
+                  <span>总价：￥1100.00</span>
+                </p>
+              </div>
+            </div>
+            <div class="btm">
+              <p class="time">下单时间：2018-11-10</p>
+              <p class="cancle">
+                <i class="ico"></i>
+                <span>取消订单</span>
+              </p>
+            </div>
+          </div>
+          <div id="address" v-if="currentTab === 'address'"></div>
+          <div id="password" v-if="currentTab === 'password'"></div>
+          <div id="contact" v-if="currentTab === 'contact'"></div>
+        </div>
     </section>
   </div>
 </template>
@@ -29,22 +56,19 @@ export default {
   data () {
     return {
       tabs: [{
-          value: 'desc',
+          value: 'order',
           label: '我的订单'
         },{
-          value: 'property',
-          label: '我的收藏'
+          value: 'address',
+          label: '地址管理'
         },{
-          value: 'safe',
-          label: '买到的宝贝'
+          value: 'password',
+          label: '修改密码'
         },{
-          value: 'promise',
-          label: '我的收货地址'
-        },{
-          value: 'record',
-          label: '我的购物车'
+          value: 'contact',
+          label: '联系我们'
         }],
-        currentTab: 'desc'
+        currentTab: 'order'
     }
   },
   components:{
@@ -84,7 +108,6 @@ export default {
     box-sizing:border-box;
     box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.20);
     .tab_btn{
-      margin-bottom: 50px;
       border-bottom: 1px solid #DFDFDF;
       font-size: 0;
       .tab_item{
@@ -95,7 +118,7 @@ export default {
         font-size: 18px;
         color: #444;
         text-align: center;
-        margin-right:142px;
+        margin-right:230px;
         cursor: pointer;
         &:last-child{
           margin-right:0;
@@ -116,5 +139,33 @@ export default {
         }
       }
     }
-}
+  }
+  .content{
+    padding: 20px;
+  }
+  #order{
+    .left {
+      width: 120px;
+      text-align: center;
+      .pic{
+        width: 80px;
+        height: 80px;
+      }
+    }
+    .right{
+      padding-top: 10px;
+      .name{
+        font-size: 18px;
+        color: #3c3c3c;
+        cursor: pointer;
+        &:hover{
+          color:#f7931e;
+        };
+      }
+      .type{
+        font-size: 16px;
+        color: #9e9e9e;
+      }
+    }
+  }
 </style>
