@@ -6,7 +6,7 @@
 		        <div class="fl category_index" v-if="showSort">
 		            <div class="category-title">企业购商品分类</div>
 		            <!-- <router-link to="../goodsList" class="menu-wrap"> -->
-			            <div id="menu-wrap">
+			            <div id="menu-wrap" class="menu-wrap">
 				            	<ul class="menu">
 					            	<li v-for="i in 8" class="menu-item">
 					            		<h3>整机</h3>
