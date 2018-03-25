@@ -1,0 +1,174 @@
+@import './mixin';
+
+/*reset*/
+html, body, div, span, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, samp, strike, strong, tt, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+// table, caption, tbody, tfoot, thead, tr, th, td {margin: 0; padding: 0; border: 0; outline: 0; font-size: 100%; vertical-align: baseline; background: transparent;}
+button, input, textarea{margin: 0; padding: 0;} 
+body,button,input,select,textarea{ font: 400 .24rem/1.5 -apple-system-font,"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;color:#666}
+h1,h2,h3,h4,h5,h6,th{font-size:100%;font-weight:normal;}
+address,cite,dfn,em,var{font-style:normal;}
+code, kbd, pre, samp { font-family: 'courier new', courier, monospace; } 
+ul,ol{list-style:none;}
+button,input[type="submit"],input[type="button"]{cursor: pointer;}
+input[type="radio"],input[type="checkbox"],input[type="submit"],input[type="reset"] { vertical-align: middle; cursor: pointer; }
+a{text-decoration:none;}
+a:hover,a:active{text-decoration:none;}
+:focus {outline: 0;}
+fieldset, img { border: 0; } 
+button, input, select, textarea {background:transparent; font-size: 100%; outline: 0; border:none;}
+// table{border-collapse:collapse;border-spacing:0;}
+td,th{vertical-align:middle;}
+article, aside, details, figcaption, figure, footer,header, hgroup, menu, nav, section,summary, time, mark, audio, video {display: block; margin: 0; padding: 0;}
+img{ display: inline; vertical-align: middle; max-width: 100%; }
+/*init*/
+// * {
+//   box-sizing:border-box;
+// }
+
+input, textarea, button {
+    border-radius:0;
+    // -webkit-appearance: none;
+    border:none;
+    outline:none;
+}
+// 隐藏input number 箭头
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+a {
+    color:#666;
+}
+a:hover {
+  color:#F7931E;
+}
+
+
+.layout{
+  width: 1210px;
+  margin: 0 auto;
+}
+.fr{
+  float: right;
+}
+.fl{
+  float: left;
+}
+
+
+
+/*base class*/
+.clearfix:before,.clearfix:after {display: table; content: ""; height:0; clear:both; visibility: hidden;}
+.flex {
+    display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    box-sizing:border-box;
+}
+.flex .cell {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    width: 0;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    max-width: 100%;
+    display: block;
+    padding: 0!important;
+    position: relative;
+}
+
+.show {display: block!important; }
+.hide {display: none!important; }
+.justify {display: flex; justify-content: space-between; align-items: center;}
+.center {display: flex; justify-content: center; align-items: center;}
+.noScroll { width: 100%; height: 100vh; overflow: hidden; }
+.animated { transition: .3s all ease}
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+// 按钮 button
+// -------------------------
+.md_btn {
+  display: inline-block;
+  text-align: center;
+  border-radius: .1rem;
+  vertical-align: middle;
+  &:active {
+    background: #0075D3;
+  }
+  @at-root .md_btn_wrap {
+    text-align: center;
+    padding: .3rem 0;
+  }
+  &.btn_bg {
+    display: block;
+    width: 100%;
+    height: .88rem;
+    line-height: .88rem;
+    font-size: .32rem;
+  }
+  &.btn_md {
+    width: 2.5rem;
+    height: .56rem;
+    line-height: .56rem;
+    font-size: .24rem;
+  }
+  &.btn_sm {
+    width: 1.2rem;
+    height: .48rem;
+    line-height: .48rem;
+    font-size: .2rem;
+  }
+  &.default {
+    // background-image: linear-gradient(-134deg, #0075D3 0%, #29ABFF 100%);
+    border:none;
+    color: #fff;
+    background-image: linear-gradient(46deg, #0075D3 0%, #29ABFF 100%);
+  }
+  &.empty {
+    border: 1px solid #0075D3;
+    background:none;
+    color: #0075D3;
+  }
+  &.disabled {
+    background: #F9F9F9;
+    color: #DCDDDD;
+    border: 1px solid #DCDDDD;
+  }
+  &.warning {
+    background: #ECA6A6;
+    color: #C81919;
+    border: 1px solid #C81919;
+  }
+}
