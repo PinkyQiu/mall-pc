@@ -1,5 +1,5 @@
 <template>
-		<!-- 导航栏 -->
+	<!-- 导航栏 -->
     <section class="nav_wrapper" v-if="!$route.meta.hideMenu">
       <div class="nav">
 		    <div class="layout clearfix">
@@ -70,6 +70,10 @@
 				type:Boolean,
 				default:true,
 			}
+		},
+		created() {
+			const { commit, dispatch } = this.$store
+			dispatch('getClassifyList')
 		}
 	}
 </script>
