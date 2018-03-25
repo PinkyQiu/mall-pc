@@ -11,22 +11,25 @@
     </section>
 
     <section class="tab_wrapper layout clearfix">
-        <ul class="tab_btn fl">
+        <div class="left fl">
+          <p class="all">全部功能</p>
+          <ul class="tab_btn">
             <li 
               v-for="tab in tabs" 
               class="tab_item noselect"
               :class="{'active': currentTab === tab.value}"
               @click="switchTab(tab.value)"
             >{{tab.label}}</li>
-        </ul>
+          </ul>
+        </div>
         <div class="content fl">
           <div id="order" v-if="currentTab === 'order'">
             <div class="order_wrapper" v-for="i in 3">
-              <div class="top clearfix">
-                <div class="left fl">
+              <div class="top clearfix" v-for="i in 3">
+                <div class="t_left fl">
                   <img src="../images/goodsDepic2.jpg" alt="" class="pic">
                 </div>
-                <div class="right fl">
+                <div class="t_right fl">
                   <p class="name">ID520-15 I58250 4G 1T+128G MX150-2G 银 高清W10</p>
                   <p class="type">型号：64寸高清银色</p>
                   <p class="num">
@@ -35,9 +38,9 @@
                   </p>
                 </div>
               </div>
-              <div class="btm clearfix">
-                <p class="time fr">下单时间：2018-11-10</p>
-                <p class="cancle fr">
+              <div class="btm">
+                <p class="time">下单时间：2018-11-10</p>
+                <p class="cancle">
                   <i class="ico"></i>
                   <span>取消订单</span>
                 </p>
@@ -107,56 +110,48 @@ export default {
     margin-bottom: 50px;
     background: #FFFFFF;
     box-sizing:border-box;
-    box-shadow: 1px 1px 3px 0 rgba(0,0,0,0.20);
-    .tab_btn{
-      margin: 0 20px;
-      padding-top: 30px;
-      border-bottom: 1px solid #DFDFDF;
-      font-size: 0;
-      .tab_item{
-        position: relative;
-        display: inline-block;
-        width: 120px;
-        height: 47px;
+    .left{
+      width: 120px;
+      padding-left: 112px;
+      .all{
+        color: #F7931E;
+        height: 30px;
         font-size: 18px;
-        color: #444;
-        text-align: center;
-        margin-right:230px;
-        cursor: pointer;
-        &:last-child{
-          margin-right:0;
-        };
-        &.active{
-          color: #F7931E;
-          &:after{
-            position:absolute;
-            bottom:-1px;
-            content: '';
-            left: 0;
-            width: 100%;
-            border-bottom:3px solid #F7931E;
+        line-height: 30px;
+        margin-bottom: 14px;
+      }
+      .tab_btn{
+        .tab_item{
+          font-size: 16px;
+          color: #444;
+          cursor: pointer;
+          margin-bottom: 10px;
+          &.active,&:hover{
+            color: #F7931E;
           }
-        }
-        &:hover{
-          color: #F7931E;
         }
       }
     }
   }
-  
+  .content{
+    width: 900px;
+  }
   #order{
+    .order_wrapper{
+      border: 1px solid #ccc;
+      margin-bottom: 10px;
+    }
     .top{
       padding: 20px;
-      .left {
-        width: 120px;
-        text-align: center;
+      border-bottom: 1px solid #ccc;
+      .t_left {
+        width: 100px;
         .pic{
           width: 80px;
           height: 80px;
         }
       }
-      .right{
-        padding-top: 10px;
+      .t_right{
         .name{
           font-size: 18px;
           color: #3c3c3c;
@@ -167,12 +162,12 @@ export default {
         }
         .type{
           font-size: 16px;
-          color: #9e9e9e;
+          color: #999;
           margin: 2px 0;
         }
         .num{
           font-size: 16px;
-          color: #9e9e9e;
+          color: #999;
           span{
             margin-right: 30px;
           }
@@ -180,16 +175,31 @@ export default {
       }
     }
     .btm{
-      margin-top: 20px;
       border-top:1px solid #ccc; 
       background-color: #f1f1f1;
-      height: 30px;
-      line-height: 30px;
-      .time{
+      height: 36px;
+      line-height: 36px;
+      text-align: right;
+      .time,.cancle{
+        display: inline-block;
         margin-right: 30px;
-        font-size: 14px;
-
+        vertical-align: top;
       }
+      .cancle{
+        cursor: pointer;
+        &:hover{
+          color:#f7931e;
+        };
+        .ico{
+          display: inline-block;
+          width: 22px;
+          height: 36px;
+          background:url('../images/cancle.png') center no-repeat;
+          background-size: 22px 22px;
+          vertical-align: top;
+        }
+      }
+      
     }
   }
 </style>
