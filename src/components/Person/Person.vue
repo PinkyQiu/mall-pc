@@ -47,9 +47,48 @@
               </div>
             </div>
           </div>
-          <div id="address" v-if="currentTab === 'address'"></div>
-          <div id="password" v-if="currentTab === 'password'"></div>
-          <div id="contact" v-if="currentTab === 'contact'"></div>
+          <div id="address" v-if="currentTab === 'address'">
+            <div class="address_wrrapper" v-for="i in 3">
+              <div class="top">
+                <p class="name">
+                  <span>欧欧</span>
+                  <span>13814242551</span>
+                </p>
+                <p class="address">广东省深圳市福田区新洲中心村99栋广东省深圳市福田区新洲中心村99栋</p>
+              </div>
+              <div class="btm">
+                <p class="edit">
+                  <i class="ico"></i>
+                  <span>编辑</span>
+                </p>
+                <p class="del">
+                  <i class="ico"></i>
+                  <span>删除</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div id="password" v-if="currentTab === 'password'">
+            <div class="pwd_wrapper">
+              <span>原密码</span>
+              <input type="password" class="old" placeholder="请输入原密码">
+            </div>
+            <div class="pwd_wrapper">
+              <span>新密码</span>
+              <input type="password" class="old" placeholder="请输入新密码">
+            </div>
+            <p class="btn">确认修改</p>
+          </div>
+          <div id="contact" v-if="currentTab === 'contact'">
+            <div class="contact_wrapper">
+              <span class="title">联系人</span>
+              <span class="name">陈俏霖</span>
+            </div>
+            <div class="contact_wrapper">
+              <span class="title">联系电话</span>
+              <span class="num">0662-6636328&nbsp;,&nbsp;&nbsp;13926381516</span>
+            </div>
+          </div>
         </div>
     </section>
   </div>
@@ -78,6 +117,11 @@ export default {
   },
   components:{
     MMenu,
+  },
+  methods:{
+    switchTab(tab) {
+      this.currentTab = tab
+    }
   }
   
 }
@@ -138,12 +182,13 @@ export default {
   }
   #order{
     .order_wrapper{
-      border: 1px solid #ccc;
-      margin-bottom: 10px;
-    }
-    .top{
-      padding: 20px;
-      border-bottom: 1px solid #ccc;
+      box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+      .top{
+        padding: 20px;
+        margin: 0 10px;
+        border-bottom: 1px dashed #ccc;
+      }
       .t_left {
         width: 100px;
         .pic{
@@ -175,8 +220,6 @@ export default {
       }
     }
     .btm{
-      border-top:1px solid #ccc; 
-      background-color: #f1f1f1;
       height: 36px;
       line-height: 36px;
       text-align: right;
@@ -200,6 +243,105 @@ export default {
         }
       }
       
+    }
+  }
+  #address{
+    padding:0 10px;
+    .address_wrrapper{
+      padding: 20px 20px 0;
+      font-size: 14px;
+      box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+    .top{
+      padding-bottom: 14px;
+      border-bottom: 1px dashed #eee;
+    }
+    .name{
+      margin-bottom: 4px;
+      span{
+        margin-right: 4px;
+      }
+    }
+    .btm{
+      text-align: right;
+      height: 36px;
+      line-height: 36px;
+    }
+    .edit,.del{
+      display: inline-block;
+      margin-left: 40px;
+      .ico{
+        display: inline-block;
+        width: 22px;
+        height: 36px;
+        vertical-align: top;
+      }
+    }
+    .edit{
+      .ico{
+        background: url('../images/edit.png') center no-repeat;
+        background-size: 22px 22px;
+      }
+    }
+    .del{
+      .ico{
+        background: url('../images/cancle.png') center no-repeat;
+        background-size: 22px 22px;
+      }
+    }
+  }
+  #password{
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+    padding: 0 10px 10px;
+    font-size: 14px;
+    .pwd_wrapper{
+      height: 36px;
+      line-height: 36px;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      span{
+        margin-right: 20px;
+      }
+      input::placeholder{
+        color: #999;
+      }
+    }
+    .btn{
+      width: 200px;
+      height: 40px;
+      line-height: 40px;
+      border-radius: 5px;
+      text-align: center;
+      margin: 10px auto 0;
+      border: 1px solid #F7931E;
+      color: #F7931E;
+      cursor: pointer;
+      transition:all .3s;
+      &:hover{
+        background:#F7931E;
+        color: #fff;
+      };
+    }
+  }
+  #contact{
+    box-shadow: 1px 1px 3px 0 rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    padding: 30px 40px;
+    height: 160px;
+    color: #888;
+    .title{
+      display: inline-block;
+      width: 70px;
+      margin:0 12px 12px 0;
+    }
+    .name{
+      color: #333;
+      font-size: 18px;
+    }
+    .num{
+      color: #F7931E;
+      font-size: 18px;
     }
   }
 </style>
