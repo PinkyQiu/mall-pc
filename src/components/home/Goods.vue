@@ -130,9 +130,9 @@ export default {
     cursor: default;
     color: #333;
     background-color: #fff;
-    // &:hover,
+    &:hover,
     &.active {
-      background-color: #000;
+      background-color: #333;
       color: #fff;
     }
   }

@@ -89,12 +89,12 @@
 					    line-height: 32px;
 					    font-size: 14px;
 					    text-align: center;
-					    border: 1px solid #F7931E;
+					    border: 1px solid #333;
 					    background-color: #fff;
-					    color: #F7931E;
+					    color: #666;
 					    transition: all .1s ease-in 0s;
 					    &:hover{
-					    	background-color: #F7931E;
+					    	background-color: #0059c9;
 		            color: #fff;
 					    };
 					}

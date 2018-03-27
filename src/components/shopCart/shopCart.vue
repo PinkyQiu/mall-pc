@@ -86,7 +86,7 @@ export default {
   }
   .shop_wrapper{
     margin:5px auto;
-    th {
+    th,td {
       display: table-cell;
       padding: 5px;
     }
@@ -100,6 +100,12 @@ export default {
         display: table-row-group;
         vertical-align: middle;
     }
+    .inputBg{
+      border: 1px solid #b3b3b3;
+      width:60px;
+      height: 25px;
+      line-height: 25px;
+    }
   }
   .shop_btn,.account{
     height: 42px;
@@ -111,7 +117,7 @@ export default {
       height: 30px;
       line-height: 30px;
       width: 100px;
-      background: #F7931E;
+      background: #0059c9;
       color: #fff;
       text-align: center;
       border-radius: 5px;

@@ -210,12 +210,13 @@
 		    overflow: hidden;
 		    border: 1px solid #f0f0f0;
 		    height: 38px;
+
 		    span{
+		    	float: left;
 		    	width: 136px;
 			    height: 38px;
 			    line-height: 38px;
-			    color: #666;
-			    float: left;
+			    color: #3a6bed;
 			    font-size: 14px;
 			    text-align: center;
 			    cursor: pointer;

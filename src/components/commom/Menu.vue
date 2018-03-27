@@ -113,31 +113,31 @@
 		.nav {
 		    height: 44px;
 		    width: 100%;
-		    border-bottom: 2px solid #F7931E;
+		    border-bottom: 2px solid #0059c9;
 		}
 		.category_index {
 		    position: relative;
 		    width: 220px;
 		    height: 44px;
 		    overflow: visible;
-		    background-color: #F7931E;
+		    background-color: #0059c9;
 
 		}
 		.menu{
 			position: absolute;
 			top:44px;
 			width: 100%;
-			background-color: #f99d31;
+			background-color: #3a6bed;
 			color:#fff;
 		}
 		.menu-item {
 			position: relative;
 			padding: 5px 20px;
 	    height: 60px;
-	    border-bottom: 1px solid #F7931E;
+	    border-bottom: 1px solid #0059c9;
 	    box-sizing: border-box;
 	    &:hover{
-	    	background-color:#f7762f;
+	    	background-color:rgb(0,84,189);
 	    };
 	    .sub-item span{
 	    	padding-right:3px;
@@ -175,8 +175,8 @@
 			height: 479px;
 			z-index: 10;
 			background-color: #fff;
-			border-right:1px solid #F7931E;
-			border-bottom:1px solid #F7931E;
+			border-right:1px solid #1959b1;
+			border-bottom:1px solid #1959b1;
 			.menu_list{
 				margin-top: 10px;
 			}
@@ -228,7 +228,7 @@
 				    color: #333;
 				    &:hover{
 						text-decoration: underline;
-				    	color: #F7931E;
+				    	color: #3a6bed;
 				    };
 				}
 		}

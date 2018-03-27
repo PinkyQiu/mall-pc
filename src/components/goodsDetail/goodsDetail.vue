@@ -129,7 +129,7 @@
   }
   .tab{
     width: 1000px;
-    border-bottom: 1px solid #F7931E;
+    border-bottom: 1px solid #0059c9;
     margin:0 auto;
     background-color: #f7f7f7;
     .tab_item{
@@ -142,10 +142,10 @@
       color: #333;
       cursor: pointer;
       &:hover{
-        color: #F7931E;
+        color: #0059c9;
       }
       &.active{
-        background-color:#F7931E;
+        background-color:#0059c9;
         color: #fff;
       };
     }

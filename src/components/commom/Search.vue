@@ -64,7 +64,7 @@
 		}
 		.search-input {
 		    width: 446px;
-		    border-color: rgba(247, 147, 30, .7);
+		    border-color: rgba(0, 89, 201,.9);
 		    height: 24px;
 		    line-height: 24px;
 		    padding: 4px;
@@ -77,7 +77,8 @@
 		    font-family: "microsoft yahei";
 		    transition:all .3s;
 		    &:hover{
-		    	border-color: rgba(247, 147, 30, 1);
+		    	box-shadow: 0 0 2px 0 rgba(6, 111, 244, 0.3);
+		    	border-color: rgba(6, 111, 244, 1);
 		    };
 		}
 		.search-button {
@@ -89,11 +90,11 @@
 		    font-size: 16px;
 		    font-family: " microsoft yahei";
 		    cursor: pointer;
-		    background-color: rgba(247, 147, 30,0.8);
+		    background-color: rgba(0, 89, 201, 0.8);
 		    text-align: center;
 		    transition:all .3s;
 		    &:hover{
-		    	background-color: rgba(247, 147, 30,1);
+		    	background-color: rgba(0, 89, 201, 1);
 		    };
 		}
 		.shopcart-box {
@@ -137,7 +138,7 @@
 				    line-height: 12px;
 				    font-size: 12px;
 				    color: #fff;
-				    background-color: #F7931E;
+				    background-color: #0059c9;
 				    border-radius: 7px 7px 7px 0;
 				    min-width: 12px;
 				    text-align: center;

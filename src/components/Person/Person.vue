@@ -156,13 +156,6 @@ export default {
     .left{
       width: 120px;
       padding-left: 112px;
-      .all{
-        color: #F7931E;
-        height: 30px;
-        font-size: 18px;
-        line-height: 30px;
-        margin-bottom: 14px;
-      }
       .tab_btn{
         .tab_item{
           font-size: 16px;
@@ -170,7 +163,7 @@ export default {
           cursor: pointer;
           margin-bottom: 20px;
           &.active,&:hover{
-            color: #F7931E;
+            color: #0059c9;
           }
         }
       }
@@ -201,7 +194,7 @@ export default {
           color: #3c3c3c;
           cursor: pointer;
           &:hover{
-            color:#f7931e;
+            color:#0059c9;
           };
         }
         .type{
@@ -230,7 +223,7 @@ export default {
       .cancle{
         cursor: pointer;
         &:hover{
-          color:#f7931e;
+          color:#0059c9;
         };
         .ico{
           display: inline-block;
@@ -270,6 +263,10 @@ export default {
     .edit,.del{
       display: inline-block;
       margin-left: 40px;
+      cursor: pointer;
+      &:hover{
+        color:#0059c9;
+      };
       .ico{
         display: inline-block;
         width: 22px;
@@ -313,12 +310,12 @@ export default {
       border-radius: 5px;
       text-align: center;
       margin: 10px auto 0;
-      border: 1px solid #F7931E;
-      color: #F7931E;
+      border: 1px solid #0059c9;
+      color: #0059c9;
       cursor: pointer;
       transition:all .3s;
       &:hover{
-        background:#F7931E;
+        background:#0059c9;
         color: #fff;
       };
     }
@@ -339,7 +336,7 @@ export default {
       font-size: 18px;
     }
     .num{
-      color: #F7931E;
+      color: #0059c9;
       font-size: 18px;
     }
   }
