@@ -1,48 +1,45 @@
 <template>
   <ul class="tab"  v-if="!$route.meta.hideslide">
     <li class="item">
-      <a href="">
+      <router-link to="/">
         <img src="../images/ico1.png" alt="" class="ico">
         <span class="txt">主页</span>
-      </a>
+      </router-link>
     </li>
     <li class="item">
-      <a href="">
+      <router-link to="/shopCart">
         <img src="../images/ico2.png" alt="" class="ico">
         <span class="txt">购物车</span>
         <span class="num">0</span>
-      </a>
+      </router-link>
     </li>
-    <li class="item">
-      <a href="">
+    <!-- <li class="item">
+      <router-link to="/">
         <img src="../images/ico3.png" alt="" class="ico">
         <span class="txt">在线客服</span>
-      </a>
-    </li>
+      </router-link>
+    </li> -->
     <li class="item">
-      <a href="">
+      <router-link to="/Person">
         <img src="../images/ico4.png" alt="" class="ico">
         <span class="txt">我的订单</span>
-      </a>
+      </router-link>
     </li>
-    <li class="item">
-      <a href="">
+    <!-- <li class="item">
+      <router-link to="/">
         <img src="../images/ico5.png" alt="" class="ico">
         <span class="txt">维修</span>
-      </a>
-    </li>
+      </router-link>
+    </li> -->
     <li class="item">
-      <a href="">
+      <router-link to="/Person">
         <img src="../images/ico6.png" alt="" class="ico">
         <span class="txt">用户中心</span>
-      </a>
+      </router-link>
     </li>
   </ul>
 </template>
-
 <script>
-
-
 export default {
   data () {
     return {

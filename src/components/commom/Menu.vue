@@ -4,54 +4,69 @@
       <div class="nav">
 		    <div class="layout clearfix">
 		        <div class="fl category_index" v-if="showSort">
-		            <div class="category-title">企业购商品分类</div>
+		            <div class="category-title">商品分类</div>
 		            <!-- <router-link to="../goodsList" class="menu-wrap"> -->
 			            <div id="menu-wrap" class="menu-wrap">
-				            	<ul class="menu">
-					            	<li v-for="i in 8" class="menu-item">
-					            		<h3>整机</h3>
-					            		<div class="sub-item">
-					            			<span>笔记本</span>
-					            			<span>笔记本</span>
-					            			<span>笔记本</span>
-					            			<span>笔记本</span>
-					            		</div>
-					            		<span class="arrow">&gt;</span>
-					            	</li>
-					            </ul>
-					            <div class="sub-menu">
-					            	<ul class="menu_list">
-					            		<li class="item clearfix" v-for="i in 5">
-					            			<h3 class="left fl">笔记本&nbsp;&gt;</h3>
-					            			<div class="right fl">
-					            				<span class="right_item" v-for="i in 8">消费笔记本</span>
-					            			</div>
-					            		</li>
-					            	</ul>
-					            </div>
+							<ul class="menu">
+								<li 
+									:key="classify._id" 
+									v-for="classify in classifyList" 
+									class="menu-item"
+									@mouseenter="menuhover(classify)"
+								>
+									<router-link :to="{path: 'goodsList'}">
+										<h3>{{classify.label}}</h3>
+									</router-link>
+									<div class="sub-item">
+										<router-link :to="{path: 'goodsList'}">
+											<span 
+												v-for="sub in classify.children" 
+												:key="sub._id">
+												{{sub.label}}
+											</span>
+										</router-link>
+									</div>
+									<span class="arrow">&gt;</span>
+								</li>
+							</ul>
+							<div class="sub-menu">
+								<ul class="menu_list">
+									<li 
+										:key="sub._id" 
+										class="item clearfix" 
+										v-for="sub in subList"
+									>
+										<h3 class="left fl">{{sub.label}}&nbsp;&gt;</h3>
+										<div class="right fl">
+											<router-link :to="{path: 'goodsList'}">
+												<span 
+													:key="child._id" 
+													class="right_item" 
+													v-for="child in sub.children"
+												>{{child.label}}</span>
+											</router-link>
+										</div>
+									</li>
+								</ul>
+							</div>
 			            </div>
 		            <!-- </router-link> -->
 		        </div>
 		        <div class="navitem fl">
 		            <ul class="navitems-group fl">
 		                <li>
-		                    <a href="#">企业购首页</a>
+							<router-link to="/">
+								首页
+							</router-link>
 		                </li>
 		                <li>
-		                    <a href="#">场景采购</a>
+							<router-link to="Person">
+								用户中心
+							</router-link>
 		                </li>
-		                <li>
-		                    <a href="#">行业解决方案</a>
-		                </li>
-		                <li>
-		                    <a href="#">企业采购特权</a>
-		                </li>
-		                <li>
-		                    <a href="#">用户中心</a>
-		                </li>
-		                <li>
+		                <!-- <li>
 		                    <a href="#">关于我们</a>
-		                </li>
+		                </li> -->
 		            </ul>
 		        </div>
 		        <div class="hotline fr clearfix">
@@ -71,14 +86,30 @@
 				default:true,
 			}
 		},
+		data() {
+			return {
+				subList: []
+			}
+		},
+		computed: {
+			classifyList () {
+				return this.$store.state.classify.list
+			}
+		},
 		created() {
 			const { commit, dispatch } = this.$store
 			dispatch('getClassifyList')
+		},
+		methods: {
+			menuhover(classify) {
+				this.subList = classify.children
+			}
 		}
 	}
 </script>
 <style lang="scss" scoped>
 	.nav_wrapper{
+		
 		.nav {
 		    height: 44px;
 		    width: 100%;
@@ -111,8 +142,10 @@
 	    .sub-item span{
 	    	padding-right:3px;
 	    	cursor: pointer;
+			color:#fff;
 	    }
 	    h3{
+			color:#fff;
 	    	padding: 5px 0;
 	    }
 	    .arrow{
@@ -194,6 +227,7 @@
 				    font-weight: 400;
 				    color: #333;
 				    &:hover{
+						text-decoration: underline;
 				    	color: #F7931E;
 				    };
 				}

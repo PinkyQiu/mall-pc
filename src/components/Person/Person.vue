@@ -12,7 +12,6 @@
 
     <section class="tab_wrapper layout clearfix">
         <div class="left fl">
-          <p class="all">全部功能</p>
           <ul class="tab_btn">
             <li 
               v-for="tab in tabs" 
@@ -169,7 +168,7 @@ export default {
           font-size: 16px;
           color: #444;
           cursor: pointer;
-          margin-bottom: 10px;
+          margin-bottom: 20px;
           &.active,&:hover{
             color: #F7931E;
           }

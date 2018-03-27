@@ -1,29 +1,33 @@
 <template>
     <ul class="clearfix">
-			<li class="item" v-for="i in num">
-				<router-link to="../goodsDetail">
-					<div class="pic">
-						<a href="#">
-							<img src="../images/computer.jpg" alt="">
-						</a>
-					</div>
-					<div class="name">
-						小新潮7000-14 I58250U 8G 1T+128G 2G 银 高清背光 W10
-					</div>
-					<div class="price" v-if="showPrice">
-						<span>零售价</span>
-						<em>5699.00</em>
-					</div>
-					<div class="handle">
-						<router-link to="../Login">登录查看企业专享价</router-link>
-					</div>
-				</router-link>
-			</li>
-		</ul>
+		<li :key="item._id" class="item" v-for="item in list">
+			<router-link :to="`/goodsDetail/${item._id}`">
+				<div class="pic">
+					<a href="#">
+						<img :src="`/img/${item.image_path[0]}`" alt="">
+					</a>
+				</div>
+				<div class="name">{{item.title}}</div>
+				<div class="price">
+					<span>零售价</span>
+					<em>5699.00</em>
+				</div>
+				<div v-if="false" class="handle">
+					<router-link to="../Login">登录查看企业专享价</router-link>
+				</div>
+			</router-link>
+		</li>
+	</ul>
 </template>
 <script>
 	export default {
 		props:{
+			list: {
+				type: Array,
+				default(){
+					return []
+				}
+			},
 			num:{
 				type:Number,
 				default:10,
@@ -56,12 +60,13 @@
 				}
 			}
 			.name {
-			    padding: 0 20px;
-			    height: 28px;
-			    line-height: 28px;
-			    overflow: hidden;
-			    text-align: center;
-			    font-size: 12px;
+				padding: 10px 20px 0;
+				height: 56px;
+				line-height: 1.6;
+				overflow: hidden;
+				text-align: center;
+				font-size: 12px;
+				white-space: normal;
 			}
 			.price {
 			    height: 18px;

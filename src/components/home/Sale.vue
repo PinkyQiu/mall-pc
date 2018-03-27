@@ -8,7 +8,12 @@
   	  <i class="arrow left" @click="arrowLeft"></i>
 	  	<div class="good_wrapper" ref="goodList">
 		  	<div class="good_list">
-			  	<Item ref="goodListPic" class="good_list_pic clearlfix" :showPrice="false"></Item>
+			  	<Item 
+					ref="goodListPic" 
+					class="good_list_pic clearlfix" 
+					:showPrice="false"
+					:list="hotList"
+				></Item>
 		  	</div>
 	  	</div>
 	  	<i class="arrow right" @click="arrowRight"></i>
@@ -23,7 +28,14 @@ export default {
     return {
     	currentDistance:0,
     }
-  },
+	},
+	computed: {
+		hotList () {
+				let list = this.$store.state.home.hotList
+				list = list.slice(4)
+				return list
+			},
+	},
   methods: {
   	go(isNext) {
 			var goodList = this.$refs.goodList;

@@ -30,6 +30,6 @@ export default {
 	  @import './components/style/mixin.scss';
   	@import './components/style/common.scss';
     .main{
-      min-height: 500px;
+      min-height: 600px;
     }
 </style>

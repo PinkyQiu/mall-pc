@@ -1,7 +1,7 @@
 <template>
 	<div class="content_wrapper clearfix layout">
     <!-- 中间图片 -->
-	  <div class="main fl">
+	  <div class="slider-wrap fl">
 	    <!-- 轮播图 -->
 			<div class="swipper">
 			 	<div class="swiper-container" id="banners">
@@ -30,17 +30,12 @@
 
 			<!-- 四组图片 -->
 			<ul class="pc_list clearfix">
-				<li class="item fl">
-					<img src="../images/pic.png" alt="">
-				</li>
-				<li class="item fl">
-					<img src="../images/pic.png" alt="">
-				</li>
-				<li class="item fl">
-					<img src="../images/pic.png" alt="">
-				</li>
-				<li class="item fl">
-					<img src="../images/pic.png" alt="">
+				<li 
+					:key="item._id" 
+					class="item" 
+					v-for="item in hotList"
+				>
+					<img :src="`/img/${item.image_path[0]}`" alt="">
 				</li>
 			</ul>
 		</div>
@@ -51,8 +46,8 @@
 				<div class="login">
 					<div class="login-username item">
 					  <p class="ico_wrapper">
-            	<i class="ico ico_user"></i>
-            </p>
+						<i class="ico ico_user"></i>
+					</p>
     				<input type="text" class="phonenum">
 					</div>
 					<div class="login-password item">
@@ -100,14 +95,23 @@
 			}
 		},
 		components:{
-        swiper,
-        swiperSlide
-    },
-    computed: {
-    	swiper() {
-    		return this.$refs.swiper.swiper;
-    	}
-    },
+			swiper,
+			swiperSlide
+		},
+		computed: {
+			hotList () {
+				let list = this.$store.state.home.hotList
+				list = list.slice(0, 4)
+				return list
+			},
+			swiper() {
+				return this.$refs.swiper.swiper;
+			}
+		},
+		created() {
+			const { commit, dispatch } = this.$store
+			dispatch('getHotList')
+		}
 	}
 </script>
 <style lang="scss" scoped>
@@ -115,7 +119,7 @@
 		padding-left: 230px;
 		box-sizing:border-box;
 	}
-	.main{
+	.slider-wrap{
     width: 652px;
     height: 468px;
     padding-top: 10px;
@@ -133,6 +137,18 @@
 	.pc_list{
 		.item:hover{
 			background-color:#cce0ff;
+		}
+		.item{
+			display: inline-block;
+			margin: 5px;
+			background-color: #f1eded;
+			width: 153px;
+			height: 153px;
+			box-sizing: border-box;
+		}
+		img {
+			width: 153px;
+			height: 153px;
 		}
 	}
 	.login_wrapper{

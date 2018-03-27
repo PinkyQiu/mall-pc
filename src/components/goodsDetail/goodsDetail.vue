@@ -2,6 +2,7 @@
   <div class="detail_wrapper">
     <ul class="tab clearfix">
       <li 
+        :key="tab.value"
         v-for="tab in tabs" 
         class="tab_item noselect"
         :class="{'active': currentTab === tab.value}"
@@ -10,7 +11,13 @@
     </ul>
     <div class="content">
       <div v-if="currentTab === 'desc'" id="desc">
-        <img src="../images/detail_pic1.jpg" alt="" class="desc_pic">
+        <img 
+          :key="img"
+          v-for="img in detailInfo.detailImgs" 
+          :src="`/img/${img}`" 
+          alt="" 
+          class="desc_pic"
+        >
       </div>
       <div v-if="currentTab === 'property'" id="property">
         <table class="table" width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#dddddd">
@@ -18,45 +25,9 @@
             <tr>
               <th colspan="2" bgcolor="#FFFFFF">商品属性</th>
             </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[CPU型号]</td>
-                <td bgcolor="#FFFFFF" align="left">8250U</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[固态硬盘]</td>
-                <td bgcolor="#FFFFFF" align="left">128G</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[显卡容量]</td>
-                <td bgcolor="#FFFFFF" align="left">2G</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[光驱]</td>
-                <td bgcolor="#FFFFFF" align="left">无光驱</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[操作系统]</td>
-                <td bgcolor="#FFFFFF" align="left">WIN10操作系统</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[颜色]</td>
-                <td bgcolor="#FFFFFF" align="left">金色</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[分辨率]</td>
-                <td bgcolor="#FFFFFF" align="left">高清（1920*1080P）</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[背光键盘]</td>
-                <td bgcolor="#FFFFFF" align="left">有</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[屏幕触控]</td>
-                <td bgcolor="#FFFFFF" align="left">否</td>
-            </tr>
-            <tr>
-                <td bgcolor="#FFFFFF" align="left" class="f1">[显卡型号]</td>
-                <td bgcolor="#FFFFFF" align="left">940MX</td>
+            <tr :key="property._id" v-for="property in detailInfo.properties">
+                <td bgcolor="#FFFFFF" align="left" class="f1">{{property.name}}</td>
+                <td bgcolor="#FFFFFF" align="left">{{property.content}}</td>
             </tr>
           </tbody>
         </table>
@@ -95,7 +66,7 @@
          <br/>售后服务电话：020-85656846   
          <br/>品牌官方网站：www.lenovo.com
       </div>
-      <div v-if="currentTab === 'record'" id="record">
+      <!-- <div v-if="currentTab === 'record'" id="record">
         <table class="transaction-record" cellspacing="0px">
           <tbody>
             <tr>
@@ -112,12 +83,13 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 <script>
 	export default {
+    props: ['detailInfo'],
     data(){
       return {
         tabs: [{
@@ -132,10 +104,12 @@
         },{
           value: 'promise',
           label: '服务承诺'
-        },{
-          value: 'record',
-          label: '交易记录'
-        }],
+        },
+        // {
+        //   value: 'record',
+        //   label: '交易记录'
+        // }
+        ],
         currentTab: 'desc'
       }
     },
@@ -183,7 +157,9 @@
     width: 1000px;
     margin:0 auto 50px;
     .desc_pic{
-      width: 1000px;
+      display: block;
+      margin: 0 auto;
+      // width: 1000px;
       height: auto;
     }
   }

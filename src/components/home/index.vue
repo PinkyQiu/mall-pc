@@ -4,7 +4,6 @@
     <Slider></Slider>
     <Sale></Sale>
     <Goods></Goods>
-    <Recommend></Recommend>
   </div>
 </template>
 

@@ -4,7 +4,7 @@
 	  	<div class="layout clearfix">
 	        <div class="dclogo fl">
 			        <a href="#">
-			            <img src="../images/logo.jpg" alt="">
+			            <img src="../images/sclogo.png" alt="">
 			        </a>
 	        </div>
 	        <div class="head-search fl">
@@ -44,18 +44,19 @@
 </script>
 <style lang="scss" scoped>
 	.header_search {
+		margin-bottom: 50px;
 		.dclogo {
 		    width: 362px;
 		    height: 60px;
 		    padding: 20px 0;
 		    a {
 				    display: block;
-				    width: 270px;
-				    height: 60px;
+				    width: 300px;
+				    height: 80px;
 				}
 				img {
-				    width: 270px;
-				    height: 60px;
+				    width: 300px;
+				    height: 80px;
 				}
 		}
 		.head-search {
