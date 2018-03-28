@@ -139,6 +139,10 @@
 	    &:hover{
 	    	background-color:rgb(0,84,189);
 	    };
+		.sub-item {
+			white-space: nowrap;
+			overflow: hidden;
+		}
 	    .sub-item span{
 	    	padding-right:3px;
 	    	cursor: pointer;

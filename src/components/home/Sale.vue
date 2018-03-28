@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="layout clearfix">
   	<div class="content-title clearfix">
   		<h2 class="fl">限时特价</h2>
   		<h3 class="fl">/每一天都有惊喜/</h3>
