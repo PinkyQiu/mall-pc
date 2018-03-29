@@ -10,7 +10,7 @@
       <router-link to="/shopCart">
         <img src="../images/ico2.png" alt="" class="ico">
         <span class="txt">购物车</span>
-        <span class="num">0</span>
+        <span class="num">{{cartList.length}}</span>
       </router-link>
     </li>
     <!-- <li class="item">
@@ -45,6 +45,11 @@ export default {
     return {
     }
   },
+  computed: {
+    cartList() {
+      return this.$store.state.car.list;
+    }
+  }
   
 }
 </script>

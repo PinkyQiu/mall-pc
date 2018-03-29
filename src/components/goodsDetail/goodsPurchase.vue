@@ -161,10 +161,11 @@ export default {
     addToCar() {
       const { commit } = this.$store;
       commit("ADD_TO_CAR", this.orderInfo);
-      // Toast({
-      //   message: "添加购物车成功",
-      //   iconClass: "iconfont icon-checked"
-      // });
+      this.$notify({
+        title: '成功',
+        message: '添加购物车成功',
+        type: 'success'
+      });
     },
     buy() {
       this.showAddress = true;

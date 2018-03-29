@@ -21,6 +21,7 @@
         </div>
         <div class="content fl">
           <div id="order" v-if="currentTab === 'order'">
+            <p style="padding: 20px 0;">共{{orderList.length}}个订单</p>
             <div class="order_wrapper" v-for="(order, index) in orderList" :key="index">
               <router-link 
                 class="prod-item" 
@@ -44,7 +45,7 @@
               </router-link>
               <div class="btm">
                 <p class="time">下单时间：2018-11-10</p>
-                <p class="cancle" v-if="order.status === 0" @click="cancleOrder" >
+                <p @click="cancleOrder(order._id)" class="cancle" v-if="order.status === 0">
                   <i class="ico"></i>
                   <span>取消订单</span>
                 </p>
@@ -56,7 +57,7 @@
             </div>
           </div>
           <div id="address" v-if="currentTab === 'address'">
-            <p><el-button type="primary" @click="dialogFormVisible = true, addressForm = {}">添加地址</el-button></p>
+            <p style="padding: 20px 0;"><el-button size="small" type="primary" @click="dialogFormVisible = true, addressForm = {}">添加地址</el-button></p>
             <div class="address_wrrapper" v-for="(address, index) in addressList" :key="index">
               <div class="top">
                 <p class="name">
@@ -70,21 +71,10 @@
                   <i class="ico"></i>
                   <span>编辑</span>
                 </p>
-                <p class="del" v-popover:popover5>
+                <p class="del" @click="removeAddress(address._id, index)">
                   <i class="ico"></i>
                   <span>删除</span>
                 </p>
-                <el-popover
-                  ref="popover5"
-                  placement="top"
-                  width="160"
-                  v-model="visible2">
-                  <p>确定删除该地址吗？</p>
-                  <div style="text-align: right; margin: 0">
-                    <el-button size="mini" type="text" @click="visible2 = false">取消</el-button>
-                    <el-button type="primary" size="mini" @click="removeAddress(address._id, index)">确定</el-button>
-                  </div>
-                </el-popover>
               </div>
             </div>
             <el-dialog :title="addressForm._id ? '修改地址' : '新增地址'" :visible.sync="dialogFormVisible">
@@ -121,100 +111,120 @@
   </div>
 </template>
 <script>
-import MMenu from '../commom/Menu'
+import MMenu from "../commom/Menu";
 export default {
-  data () {
+  data() {
     return {
-      tabs: [{
-          value: 'order',
-          label: '我的订单'
-        },{
-          value: 'address',
-          label: '地址管理'
-        },{
-          value: 'password',
-          label: '修改密码'
-        }],
-        currentTab: 'order',
-        formLabelWidth: '120px',
-        visible2: false,
-        dialogFormVisible: false,
-        addressForm: {},
-        oldpwd: '',
-        newpwd: '',
-    }
+      tabs: [
+        {
+          value: "order",
+          label: "我的订单"
+        },
+        {
+          value: "address",
+          label: "地址管理"
+        },
+        {
+          value: "password",
+          label: "修改密码"
+        }
+      ],
+      currentTab: "order",
+      formLabelWidth: "120px",
+      visible2: false,
+      visible3: false,
+      dialogFormVisible: false,
+      addressForm: {},
+      oldpwd: "",
+      newpwd: ""
+    };
   },
   computed: {
     orderList() {
-      return this.$store.state.order.list
+      return this.$store.state.order.list;
     },
     addressList() {
-      return this.$store.state.address.list
+      return this.$store.state.address.list;
     }
   },
   created() {
-    const { dispatch } = this.$store
-    dispatch('getOrderList')
-    dispatch('getAddressList')
+    const { dispatch } = this.$store;
+    dispatch("getOrderList");
+    dispatch("getAddressList");
   },
-  methods:{
+  methods: {
     switchTab(tab) {
-      this.currentTab = tab
+      this.currentTab = tab;
     },
     cancleOrder(id) {
-      MessageBox.confirm('确定取消该订单?').then(action => {
-        const { dispatch } = this.$store
-        dispatch('cancelOrder', {id}).then(() => {
-          dispatch('getOrderList')
-        })
-      })
+      this.$confirm("确定取消?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        const { dispatch } = this.$store;
+        dispatch("cancelOrder", { id }).then(() => {
+          dispatch("getOrderList");
+        });
+      });
     },
     submitAddress() {
-      const { dispatch } = this.$store
-      this.addressForm._id ? 
-      dispatch('updateAddress', this.addressForm).then(res => {
-        this.dialogFormVisible = false
-        dispatch('getAddressList')
-      }) : 
-      dispatch('addAddress', this.addressForm).then(res => {
-        this.dialogFormVisible = false
-        dispatch('getAddressList')
-      })
+      const { dispatch } = this.$store;
+      this.addressForm._id
+        ? dispatch("updateAddress", this.addressForm).then(res => {
+            this.dialogFormVisible = false;
+            dispatch("getAddressList");
+          })
+        : dispatch("addAddress", this.addressForm).then(res => {
+            this.dialogFormVisible = false;
+            dispatch("getAddressList");
+          });
     },
     editAddress(address = {}) {
-      this.addressForm = address
+      this.dialogFormVisible = true;
+      this.addressForm = address;
     },
     removeAddress(id, index) {
-      const { dispatch } = this.$store
-      dispatch('removeAddress', { id, index }).then(() => {
-        dispatch('getAddressList')
-      })
-    },
-    updatePassword () {
-      const { oldpwd, newpwd } = this
-      if(!oldpwd || !newpwd) {
-        this.$message({
-          message: '请输入密码',
-          type: 'warning'
+      this.$confirm("确定删除?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      }).then(() => {
+        const { dispatch } = this.$store;
+        dispatch("removeAddress", { id, index }).then(() => {
+          dispatch("getAddressList");
         });
-        return
+      });
+    },
+    updatePassword() {
+      const { oldpwd, newpwd } = this;
+      if (!oldpwd || !newpwd) {
+        this.$message({
+          message: "请输入密码",
+          type: "warning"
+        });
+        return;
       }
-      const { dispatch } = this.$store
-      dispatch('updatePassword', {oldpwd, newpwd}).then((res) => {
-        if(res.code === 0) {
+      const { dispatch } = this.$store;
+      dispatch("updatePassword", { oldpwd, newpwd }).then(res => {
+        if (res.code === 0) {
           this.$message({
-            message: '修改成功',
-            type: 'success'
+            message: "修改成功",
+            type: "success"
+          });
+        }else {
+          this.$message({
+            message: res.errMsg,
+            type: "warning"
           });
         }
-      })
+      });
     }
   },
-  components:{
-    MMenu,
+  components: {
+    MMenu
   }
-  
-}
+};
 </script>
 
 <style scoped lang="scss" scoped>

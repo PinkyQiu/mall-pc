@@ -10,6 +10,11 @@ api.getHotList = function (params) {
   return http.request(url, 'get', params)
 }
 
+api.getBannerList = function(params) {
+  const url = config.apiurl + '/getBannerList'
+  return http.request(url, 'get', params)
+}
+
 /**
  * 获取新品推荐
  */

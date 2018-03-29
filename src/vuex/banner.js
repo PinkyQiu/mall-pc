@@ -5,16 +5,16 @@ const state = {
 }
 
 const actions = {
-    getClassifyList({ commit }, params) {
-        return api.getClassifyList(params).then(res => {
-            commit('SET_CLASSIFY_LIST', res.data)
+    getBannerList({ commit }, params) {
+        return api.getBannerList(params).then(res => {
+            commit('SET_BANNER_LIST', res.data)
             return res.data
         })
     }
 }
 
 const mutations = {
-    ['SET_CLASSIFY_LIST'](state, list) {
+    ['SET_BANNER_LIST'](state, list) {
         state.list = list
     }
 }

@@ -3,7 +3,8 @@ import * as types from './mutation-types'
 
 const state = {
     hotList: [],
-    newList: []
+    newList: [],
+    bannerList: []
 }
 
 const actions = {
@@ -16,6 +17,15 @@ const actions = {
         api.getNewList(params).then(res => {
             commit('SET_NEW_LIST', res.data);
         })
+    },
+    getBannerList({ commit }, params) {
+        return api.getBannerList(params).then(res => {
+            const list = res.list.filter(item => {
+                return !!item.img
+            })
+            commit('SET_BANNER_LIST', list)
+            return list
+        })
     }
 }
 
@@ -25,6 +35,9 @@ const mutations = {
     },
     ['SET_NEW_LIST'](state, newList) {
         state.newList = newList
+    },
+    ['SET_BANNER_LIST'](state, bannerList) {
+        state.bannerList = bannerList
     }
 }
 
