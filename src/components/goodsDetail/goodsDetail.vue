@@ -14,7 +14,7 @@
         <img 
           :key="img"
           v-for="img in detailInfo.detailImgs" 
-          :src="`/img/${img}`" 
+          :src="`${config.imgurl}${img}`" 
           alt="" 
           class="desc_pic"
         >
@@ -48,7 +48,7 @@
           </div>
           <div class="right fl">
             <p class="title">正品行货</p>
-            <p class="txt">德成在线向您保证所售商品均为正品行货</p>
+            <p class="txt">胜程在线向您保证所售商品均为正品行货</p>
           </div>
         </div>
         <div class="item clearfix">
@@ -63,8 +63,7 @@
         </div>
       </div>
       <div v-if="currentTab === 'promise'" id="promise">售后内容：本产品全国联保，享受三包服务。
-         <br/>售后服务电话：020-85656846   
-         <br/>品牌官方网站：www.lenovo.com
+         <br/>售后服务电话：020-89811669
       </div>
       <!-- <div v-if="currentTab === 'record'" id="record">
         <table class="transaction-record" cellspacing="0px">
@@ -88,10 +87,12 @@
   </div>
 </template>
 <script>
+import config from "api/config";
 	export default {
     props: ['detailInfo'],
     data(){
       return {
+        config,
         tabs: [{
           value: 'desc',
           label: '商品描述'

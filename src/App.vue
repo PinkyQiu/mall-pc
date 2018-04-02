@@ -22,7 +22,11 @@ export default {
   	Search,
     Footer,
     slideSide,
-  }
+  },
+  created() {
+    const { dispatch } = this.$store
+    dispatch('getUserInfo')
+  },
 }
 </script>
 

@@ -1,11 +1,9 @@
 import axios from 'axios'
 import router from '../router/index'
 import store from '../vuex/index'
+import envConfig from './config'
 // import { Toast } from 'mint-ui'
 const Http = {}
-// const group = '5a9d2e61e0fd21228ecd045a'
-const group = '5a91013698ffab18046498ec'
-const order_group = '5aa5489d539668445afebc09'
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 Http.request = (url, method, params, headers) => {
@@ -58,8 +56,7 @@ Http.request = (url, method, params, headers) => {
 axios.interceptors.request.use((config) => {
     store.commit('SET_LOADING', true)
     if (!config.params) config.params = {}
-    config.params.group = group
-    config.params.order_group = order_group
+    config.params.group = envConfig.group
     return config;
 }, (error) => {
     // Toast({

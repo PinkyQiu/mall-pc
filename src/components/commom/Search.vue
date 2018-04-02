@@ -10,8 +10,22 @@
 	        <div class="head-search fl">
 			        <div class="form">
 			            <form id="searchForm" name="searchForm">
-			                <input name="keywords" id="keyword" value="" type="text" class="searchText fl ac_input search-input" autocomplete="off">
-			                <input type="submit" value="搜索" name="imageField" class="search-button fl searchBtn" style="cursor:pointer;">
+			                <input 
+                        name="keywords" 
+                        id="keyword" 
+                        v-model="searchText" 
+                        type="text" 
+                        class="searchText fl ac_input search-input" 
+                        autocomplete="off"
+                      >
+			                <input 
+                        @click="search"
+                        type="button" 
+                        value="搜索" 
+                        name="imageField" 
+                        class="search-button fl searchBtn" 
+                        style="cursor:pointer;"
+                      >
 			            </form>
 			        </div>
 			    </div>
@@ -28,31 +42,45 @@
 			        </div>
 			    </div>
 			    <div class="hotwords fl">
-			        <a href="#">小新</a>
-			        <a href="#">惠普打印机</a>
-			        <a href="#">华为手机P10</a>
-			        <a href="#">台式机</a>
-			        <a href="#">盆景碎纸机</a>
+			        <router-link :to="{path: 'goodsList',query: { searchText: log }}" v-for="log in searchLog" :key="log">{{log}}</router-link>
 			    </div>
 	    </div>
     </section>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      searchText: "",
+      searchLog: JSON.parse(localStorage.getItem("searchLog") || "[]")
+    };
+  },
   computed: {
     cartList() {
       return this.$store.state.car.list;
+    }
+  },
+  methods: {
+    search(e) {
+      e.preventDefault();
+      const searchLog = JSON.parse(localStorage.getItem("searchLog") || "[]");
+      searchLog.push(this.searchText);
+      localStorage.setItem("searchLog", JSON.stringify(searchLog));
+      this.$router.push({
+        path: "goodsList",
+        query: { searchText: this.searchText }
+      });
     }
   }
 };
 </script>
 <style lang="scss" scoped>
 .header_search {
-  margin-bottom: 50px;
+  margin-bottom: 20px;
   .dclogo {
     width: 362px;
     height: 60px;
-    padding: 20px 0;
+    padding: 10px 0;
     a {
       display: block;
       width: 300px;

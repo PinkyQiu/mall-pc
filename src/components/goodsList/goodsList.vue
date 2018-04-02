@@ -78,6 +78,7 @@ export default {
     getList() {
       const { label, classify, searchText } = this.$route.query;
       this.params.classifyId = classify;
+      this.params.searchText = searchText
       this.loading = true;
       const { dispatch } = this.$store;
       dispatch("getProductList", this.params);

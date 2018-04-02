@@ -20,16 +20,16 @@
             <tr v-for="(item, index) in cartList" :key="index">
               <td bgcolor="#ffffff" align="center" style="width:300px;">
                 <router-link :to="{name: 'detail', params: {id: item.detail.id}}">
-                <img style="width:80px; height:80px;" :src="`/img/${item.detail.image_path[0]}`" border="0" title="海康录像机DS-7104N-F1/4P">
+                <img style="width:80px; height:80px;" :src="`${config.imgurl}${item.detail.image_path[0]}`" border="0" title="海康录像机DS-7104N-F1/4P">
                   <br>
                   <span class="f6">{{item.detail.title}}</span>
                 </router-link>
               </td>
-              <td align="center" bgcolor="#ffffff">￥{{item.selectedType.price}}</td>
+              <td align="center" class="price" bgcolor="#ffffff">￥{{item.selectedType.price}}</td>
               <td align="center" bgcolor="#ffffff">
                 <span>{{item.count}}</span>
               </td>
-              <td align="center" bgcolor="#ffffff">￥{{item.totalPrice.toFixed(2)}}</td>
+              <td align="center" class="price" bgcolor="#ffffff">￥{{item.totalPrice.toFixed(2)}}</td>
               <td align="center" bgcolor="#ffffff">
                   <span style="cursor: pointer;" @click="remove(index)">删除</span>
               </td>
@@ -37,14 +37,14 @@
           </tbody>
         </table>
       </div>
-      <div class="shop_btn" style="text-align:right;">
-        合计：￥123123.00
+      <div class="shop_btn price" style="text-align:right;box-sizing: border-box;padding-right: 20px;">
+        合计：￥{{total.toFixed(2)}}
       </div>
       <div class="shop_btn">
         <span class="clear" @click="clear">清空购物车</span>
         <span class="update" @click="buy">立即下单</span>
       </div>
-      <el-dialog title="请选择收货地址" :visible="showAddress">
+      <el-dialog title="请选择收货地址" :visible.sync="showAddress">
         <ul class="add-wrap" v-if="addressList.length" >
           <li @click="selectAddress(address._id)" class="add-item" v-for="(address, index) in addressList" :key="index">
             <div class="add-info">
@@ -62,9 +62,11 @@
 <script>
 import MMenu from "../commom/Menu";
 import SelectAddress from "../commom/SelectAddress";
+import config from "api/config";
 export default {
   data() {
     return {
+      config,
       addressId: null,
       showAddress: false
     };
@@ -243,5 +245,17 @@ export default {
 .account {
   width: 50%;
   margin-top: 8px;
+}
+.add-item {
+  display: inline-block;
+  padding: 20px;
+  background: #fbfbfb;
+  border: 1px dashed #dedede;
+  border-radius: 4px;
+  margin: 10px;
+  cursor: pointer;
+  width: 310px;
+  height: 90px;
+  box-sizing: border-box;
 }
 </style>

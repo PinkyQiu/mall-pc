@@ -7,15 +7,18 @@
 	  >
 	  	<div class="content-title clearfix">
 			<h2 class="tt fl">{{floor.label}} {{floor.children[0].label}}</h2>
-			<ul class="tab-nav clearfix fr">
-				<li 
-					:key="child._id" 
-					v-for="(child) in floor.children[0].children" 
-					class="item"
-					:class="{'active': activeTabs[floor._id] === child._id}"
-					@mouseenter="tabChange(child._id, floor._id)"
-				>{{child.label}}</li>
-			</ul>
+      <div class="tab-wrap" ref="wrapper">
+        <ul class="tab-nav clearfix fr">
+          <li 
+            :key="child._id" 
+            v-if="index < 7"
+            v-for="(child, index) in floor.children[0].children" 
+            class="item"
+            :class="{'active': activeTabs[floor._id] === child._id}"
+            @mouseenter="tabChange(child._id, floor._id)"
+          >{{child.label}}</li>
+        </ul>
+      </div>
 		</div>
 		<div class="content_main layout clearfix">
 			<div class="left fl">
@@ -24,7 +27,11 @@
 					<li 
 						:key="child._id" 
 						v-for="(child) in floor.children[0].children" 
-					>{{child.label}}</li>
+					>
+            <router-link :to="{path: 'goodsList', query:{classify: child._id}}">
+              {{child.label}}
+            </router-link>
+          </li>
 				</ul>
 			</div>
 			<div class="right fr">
@@ -39,7 +46,8 @@
 
 <script>
 import Item from "../commom/Item";
-import api from 'api'
+import BScroll from "better-scroll";
+import api from "api";
 export default {
   data() {
     return {
@@ -49,29 +57,33 @@ export default {
     };
   },
   watch: {
-	  floorList(list){
-		this.initActiveTabs(list);
-	  }
+    floorList(list) {
+      this.initActiveTabs(list);
+      // this.$nextTick(() => {
+      //   this.scroll = new BScroll(this.$refs.wrapper, {});
+      // });
+    }
   },
+  created() {},
   computed: {
     floorList() {
       let list = this.$store.state.classify.list;
-	  list = [...list].splice(0, 2);
+      list = [...list].splice(0, 4);
       return list;
     }
   },
   methods: {
     tabChange(activetab, floor) {
-	  this.$set(this.activeTabs, [floor], activetab);
-	  this.$nextTick(() => {
-		  this.fetchTabData(activetab).then(list => {
-			this.$set(this.activeTabData, [activetab], list);
-		});
-	  })
+      this.$set(this.activeTabs, [floor], activetab);
+      this.$nextTick(() => {
+        this.fetchTabData(activetab).then(list => {
+          this.$set(this.activeTabData, [activetab], list);
+        });
+      });
     },
     initActiveTabs(list = []) {
       list.forEach(item => {
-		const tab = item.children[0].children[0]._id;
+        const tab = item.children[0].children[0]._id;
         this.$set(this.activeTabs, [item._id], tab);
         this.fetchTabData(tab).then(list => {
           this.$set(this.activeTabData, [tab], list);
@@ -83,9 +95,9 @@ export default {
         limit: 8,
         offset: 0,
         classifyId: tab
-	  };
-	  const exitList = this.loadedTabData[tab] || []
-      if(exitList.length) {
+      };
+      const exitList = this.loadedTabData[tab] || [];
+      if (exitList.length) {
         return new Promise(resolve => resolve(exitList));
       } else {
         return api.getProductList(params).then(res => {
@@ -116,13 +128,18 @@ export default {
   padding: 10px 0 6px;
   color: #333;
 }
+.tab-wrap {
+  overflow: hidden;
+}
 .tab-nav {
   padding-top: 6px;
+  max-width: 976px;
   height: 32px;
-  overflow: hidden;
+  overflow: scroll;
+  white-space: nowrap;
   .item {
+    display: inline-block;
     font-size: 16px;
-    float: left;
     margin: 0 5px;
     padding: 0 10px;
     line-height: 32px;
@@ -145,7 +162,8 @@ export default {
   }
   .left_pic {
     width: 234px;
-    height: 454px;
+    width: 234px;
+    height: 570px;
   }
   .category {
     position: absolute;
@@ -154,8 +172,8 @@ export default {
     z-index: 3;
     padding: 17px 14px 0 10px;
     width: 210px;
-    height: 107px;
-    background: #fcecec;
+    // height: 107px;
+    background: rgba(255, 255, 255, 0.5);
     li {
       float: left;
       margin-bottom: 10px;

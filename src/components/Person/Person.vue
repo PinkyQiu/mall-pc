@@ -4,8 +4,8 @@
     <section class="ban"></section>
     <!-- 用户名和头像 -->
     <section class="avater_wrapper layout">
-        <img src="../images/ico_pwd.png" alt="" class="avat">
-        <span class="name">135***2345</span>
+        <img :src="avatar" alt="" class="avat">
+        <span class="name">{{userInfo.name}}&nbsp;{{userInfo.tel}}</span>
     </section>
     <section class="tab_wrapper layout clearfix">
         <div class="left fl">
@@ -25,13 +25,13 @@
             <div class="order_wrapper" v-for="(order, index) in orderList" :key="index">
               <router-link 
                 class="prod-item" 
-                :to="{name: 'detail', params: {id: item.detail._id}}"
+                :to="{name: 'goodsDetail', params: {id: item.detail._id}}"
                 v-for="(item, innerIndex) in order.items"
                 :key="innerIndex"
               >
                 <div class="top clearfix">
                   <div class="t_left fl">
-                    <img :src="`/img/${item.detail.image_path[0]}`" alt="" class="pic">
+                    <img :src="`${config.imgurl}${item.detail.image_path[0]}`" alt="" class="pic">
                   </div>
                   <div class="t_right fl">
                     <p class="name">{{item.detail.title}}</p>
@@ -44,7 +44,7 @@
                 </div>
               </router-link>
               <div class="btm">
-                <p class="time">下单时间：2018-11-10</p>
+                <p class="time">下单时间：{{order.create_time}}</p>
                 <p @click="cancleOrder(order._id)" class="cancle" v-if="order.status === 0">
                   <i class="ico"></i>
                   <span>取消订单</span>
@@ -112,9 +112,13 @@
 </template>
 <script>
 import MMenu from "../commom/Menu";
+import avatar from '../images/avatar.png'
+import config from "api/config";
 export default {
   data() {
     return {
+      config,
+      avatar,
       tabs: [
         {
           value: "order",
@@ -145,6 +149,9 @@ export default {
     },
     addressList() {
       return this.$store.state.address.list;
+    },
+    userInfo() {
+      return this.$store.state.user.userInfo;
     }
   },
   created() {

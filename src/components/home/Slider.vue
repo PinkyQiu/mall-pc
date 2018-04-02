@@ -6,9 +6,9 @@
 			<div class="swipper">
 			 	<div class="swiper-container" id="banners">
 	          <swiper :options="bannerOption" ref="swiper">
-	              <swiper-slide v-for="slide in bannerList" :key="slide.img" >
+	              <swiper-slide v-for="slide in bannerList" :key="slide.img">
 	                  <router-link :to="`/goodsDetail/${slide.good._id}`">
-	                      <img :src="`/img/${slide.img}`" alt="">
+	                      <img :src="`${config.imgurl}${slide.img}`" alt="">
 	                  </router-link>
 	              </swiper-slide>
 	              <div class="swiper-pagination"  slot="pagination"></div>
@@ -19,19 +19,19 @@
 			</div>
 
 			<!-- 四组图片 -->
-			<ul class="pc_list clearfix">
+			<!-- <ul class="pc_list clearfix">
 				<li 
 					:key="item._id" 
 					class="item" 
 					v-for="item in hotList"
 				>
-					<img :src="`/img/${item.image_path[0]}`" alt="">
+					<img :src="`${config.imgurl}${item.image_path[0]}`" alt="">
 				</li>
-			</ul>
+			</ul> -->
 		</div>
 
 		<!-- 右侧注册 -->
-		<div class="login_wrapper">
+		<!-- <div class="login_wrapper">
 			<form name="formLogin" class="login-regist">
 				<div class="login">
 					<div class="login-username item">
@@ -52,19 +52,21 @@
 					</div>	
 				</div>
 			</form>
-		</div>
+		</div> -->
   </div>
 </template>
 <script>
 import "swiper/dist/css/swiper.css";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
+import config from "api/config";
 export default {
   data() {
     return {
+      config,
       bannerOption: {
         notNextTick: true,
         autoplay: true,
-        loop: true,
+        loop: false,
         direction: "horizontal",
         // grabCursor: true,
         setWrapperSize: true,
@@ -110,22 +112,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 .content_wrapper {
-  padding-left: 230px;
+  padding-left: 220px;
   box-sizing: border-box;
 }
 .slider-wrap {
-  width: 652px;
-  height: 468px;
-  padding-top: 10px;
+  width: 990px;
+  height: 478px;
 }
 .swipper {
   position: relative;
   margin-bottom: 10px;
-  height: 296px;
+  height: 478px;
   overflow: hidden;
   img {
-    width: 652px;
-    height: 296px;
+    width: 990px;
+    height: 478px;
   }
 }
 .pc_list {
@@ -150,7 +151,7 @@ export default {
   float: left;
   margin-left: 10px;
   width: 315px;
-  height: 468px;
+  height: 478px;
   .login-regist {
     width: 275px;
     height: 150px;

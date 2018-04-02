@@ -64,7 +64,7 @@
 			<div class="hotline fr clearfix">
 				<i class="fl"></i>
 				<span class="fl">采购热线</span>
-				<em class="fl">020-38550202</em>
+				<em class="fl">020-89811669</em>
 			</div>
 		</div>
 	</div>
@@ -119,6 +119,8 @@ export default {
     width: 100%;
     background-color: #3a6bed;
     color: #fff;
+    height: 482px;
+    overflow: hidden;
   }
   .menu-item {
     position: relative;
@@ -179,7 +181,7 @@ export default {
       text-align: right;
       padding-right: 10px;
       color: #666;
-      font-weight: bold;
+      font-size: 12px;
       padding-top: 6px;
     }
     .right {

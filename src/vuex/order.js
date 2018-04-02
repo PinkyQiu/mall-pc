@@ -10,7 +10,6 @@ const actions = {
             res.data.forEach(good => {
                 good.items.forEach(item => {
                     item.selectedType = item.detail.specs.filter(sepc => {
-                        console.log(sepc._id == item.typeId)
                         return sepc._id == item.typeId
                     })[0]
                     item.totalPrice = item.count * item.selectedType.price

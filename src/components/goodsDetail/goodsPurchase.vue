@@ -2,7 +2,7 @@
   <div class="goods_des layout clearfix">
     <div class="left fl">
       <div class="top">
-        <img :src="`/img/${detailInfo.image_path && detailInfo.image_path[currentImgIndex]}`" alt="">
+        <img :src="`${config.imgurl}${detailInfo.image_path && detailInfo.image_path[currentImgIndex]}`" alt="">
       </div>
       <div class="btm clearfix">
         <i class="arrow fl arrow_left" @click="arrowLeft"></i>
@@ -16,7 +16,7 @@
                       v-for="(img, index) in detailInfo.image_path"
                       @click="currentImgIndex = index"
                     >
-                        <img :src="`/img/${img}`" alt="">
+                        <img :src="`${config.imgurl}${img}`" alt="">
                     </li>
                 </ul>
             </div>
@@ -30,13 +30,13 @@
       <div class="pur_wrapper">
         <p class="item">
           <span>本店售价：</span>
-          <span class="r_p">{{(+currentSpec.price).toFixed(2)}}</span>
+          <span class="r_p">￥{{(+currentSpec.price).toFixed(2)}}</span>
           <span class="same">电商同款<span class="g_p">￥{{(+currentSpec.price).toFixed(2)}}</span></span>
         </p>
         <p class="item">
           <span class="item_des">商品货号：{{currentSpec.name}}</span>
           <span class="item_des">商品库存： {{currentSpec.count}}</span>
-          <span class="item_des">销量：100</span>
+          <!-- <span class="item_des">销量：100</span> -->
         </p>
         <!-- <p class="item">
           <span class="item_des">商品品牌：{{currentSpec.name}}</span>
@@ -72,10 +72,12 @@
   </div>
 </template>
 <script>
+import config from "api/config";
 export default {
   props: ["detailInfo"],
   data() {
     return {
+      config,
       currentImgIndex: 0,
       currentSpecIndex: 0,
       currentSpec: {},
