@@ -33,7 +33,7 @@
 				:page-size="20"
 				@current-change="changePageIndex"
 				layout="prev, pager, next"
-				:total="list.length">
+				:total="total">
 			</el-pagination>
 		</div>
 	</div>

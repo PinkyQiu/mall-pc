@@ -135,7 +135,7 @@ export default {
   padding-top: 6px;
   max-width: 976px;
   height: 32px;
-  overflow: scroll;
+  overflow: hidden;
   white-space: nowrap;
   .item {
     display: inline-block;
