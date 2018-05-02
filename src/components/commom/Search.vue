@@ -4,7 +4,7 @@
 	  	<div class="layout clearfix">
 	        <div class="dclogo fl">
 			        <router-link to="/">
-			            <img src="../images/sclogo.png" alt="">
+			            <img :src="`${config.imgurl}${companyInfo.pcLogo}`" alt="">
               </router-link>
 	        </div>
 	        <div class="head-search fl">
@@ -48,9 +48,11 @@
     </section>
 </template>
 <script>
+import config from "api/config";
 export default {
   data() {
     return {
+      config,
       searchText: "",
       searchLog: JSON.parse(localStorage.getItem("searchLog") || "[]")
     };
@@ -58,6 +60,9 @@ export default {
   computed: {
     cartList() {
       return this.$store.state.car.list;
+    },
+    companyInfo() {
+      return this.$store.state.home.companyInfo;
     }
   },
   methods: {

@@ -105,11 +105,11 @@ export default {
     },
     valid() {
       if (!/^[1][3,4,5,7,8][0-9]{9}$/.test(this.tel)) {
-        Toast("请输入正确的手机号码");
+        this.$message("请输入正确的手机号码");
         return false;
       }
       if (!/^[^\s]{4,18}$/.test(this.password)) {
-        Toast("请输入正确的4-18位的密码");
+        this.$message("请输入正确的4-18位的密码");
         return false;
       }
       return true;
@@ -130,7 +130,9 @@ export default {
             this.tel = "";
             this.password = "";
             this.isLoginMode = true;
-          });
+          }, err => {
+            console.log(err)
+          })
       }
     },
     submit() {

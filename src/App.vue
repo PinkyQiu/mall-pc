@@ -23,9 +23,11 @@ export default {
     Footer,
     slideSide,
   },
-  created() {
+  async created() {
     const { dispatch } = this.$store
-    dispatch('getUserInfo')
+    const companyInfo = await dispatch('getCompanyInfo', window.location.host)
+    document.title = companyInfo.name
+    await dispatch('getUserInfo')
   },
 }
 </script>

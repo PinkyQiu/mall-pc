@@ -23,4 +23,9 @@ api.getNewList = function (params) {
   return http.request(url, 'get', params)
 }
 
+api.getCompanyInfo = function (host) {
+  const url = config.apiurl + '/getCompanyInfo?host=' + host
+  return http.request(url, 'get')
+}
+
 export default api

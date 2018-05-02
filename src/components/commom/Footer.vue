@@ -1,9 +1,9 @@
 <template>
   <div class="footer" v-if="!$route.meta.hideFooter">
-    <div class="copyright">© 2005-2018 胜程企业购 版权所有，并保留所有权利。<br>
-    广州市天河区天河路518号2105房 <br>
-    Tel: 020-89811669<br><br>
-    ICP备案证书号:<a href="#" target="_blank">粤ICP备18017210号-1</a>
+    <div class="copyright">© 2005-2018 {{companyInfo.name}} 版权所有，并保留所有权利。<br>
+    {{companyInfo.address}} <br>
+    Tel: {{companyInfo.hotTel}}<br><br>
+    ICP备案证书号:<a href="#" target="_blank">{{companyInfo.record}}</a>
       <!-- <div>
             <a target="_blank" href="#" class="clearfix">
               <img src="../images/police_logo.jpg" class="police_logo">
@@ -21,6 +21,11 @@ export default {
     return {
     }
   },
+  computed: {
+    companyInfo() {
+      return this.$store.state.home.companyInfo;
+    }
+  }
   
 }
 </script>

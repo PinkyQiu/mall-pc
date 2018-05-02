@@ -4,7 +4,8 @@ import * as types from './mutation-types'
 const state = {
     hotList: [],
     newList: [],
-    bannerList: []
+    bannerList: [],
+    companyInfo: {}
 }
 
 const actions = {
@@ -26,6 +27,13 @@ const actions = {
             commit('SET_BANNER_LIST', list)
             return list
         })
+    },
+    getCompanyInfo({commit}, host) {
+        return api.getCompanyInfo(host).then(res => {
+            const info = res.data
+            commit('SET_COMPANY_INFO', info)
+            return info
+        })
     }
 }
 
@@ -38,6 +46,9 @@ const mutations = {
     },
     ['SET_BANNER_LIST'](state, bannerList) {
         state.bannerList = bannerList
+    },
+    ['SET_COMPANY_INFO'](state, info) {
+        state.companyInfo = info
     }
 }
 

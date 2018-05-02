@@ -64,7 +64,7 @@
 			<div class="hotline fr clearfix">
 				<i class="fl"></i>
 				<span class="fl">采购热线</span>
-				<em class="fl">020-89811669</em>
+				<em class="fl">{{companyInfo.hotTel}}</em>
 			</div>
 		</div>
 	</div>
@@ -86,6 +86,9 @@ export default {
   computed: {
     classifyList() {
       return this.$store.state.classify.list;
+    },
+    companyInfo() {
+      return this.$store.state.home.companyInfo;
     }
   },
   created() {

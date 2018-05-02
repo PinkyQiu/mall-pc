@@ -56,7 +56,7 @@ Http.request = (url, method, params, headers) => {
 axios.interceptors.request.use((config) => {
     store.commit('SET_LOADING', true)
     if (!config.params) config.params = {}
-    config.params.group = envConfig.group
+    config.params.group = store.state.home.companyInfo.adminId
     return config;
 }, (error) => {
     // Toast({
