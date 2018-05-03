@@ -23,7 +23,7 @@
 		<div class="content_main layout clearfix">
 			<div class="left fl">
 				<!-- <img src="../images/left_pic.jpg" alt="" class="left_pic"> -->
-        <img :src="`${config.imgurl}${floor.icon_img}`" alt="" class="left_pic">
+        <img :src="`${config.imgurl}${floor.banner}`" alt="" class="left_pic">
 				<ul class="category">
 					<li 
 						:key="child._id" 
