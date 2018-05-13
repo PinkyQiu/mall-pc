@@ -6,6 +6,7 @@ import goodsList from "@/components/goodsList/goodsList";
 import goodsDetail from "@/components/goodsDetail";
 import Login from "@/components/Login/Login";
 import Person from "@/components/Person/Person";
+import Aboutus from "@/components/Aboutus/Aboutus";
 import store from "../vuex";
 import { Message } from "element-ui";
 
@@ -50,6 +51,11 @@ const AppRouter = new Router({
       name: "Person",
       component: Person,
       meta: { requireAuth: true }
+    },
+    {
+      path: "/aboutus",
+      name: "Aboutus",
+      component: Aboutus
     },
     {
       path: "*",

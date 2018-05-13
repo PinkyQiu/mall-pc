@@ -30,7 +30,7 @@
 		<div v-if="list.length" class="pagination" style="text-align:right;padding-bottom: 50px;">
 			<el-pagination
 				background
-				:page-size="20"
+				:page-size="10"
 				@current-change="changePageIndex"
 				layout="prev, pager, next"
 				:total="total">

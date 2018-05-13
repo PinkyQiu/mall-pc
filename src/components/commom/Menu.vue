@@ -56,9 +56,11 @@
 							用户中心
 						</router-link>
 					</li>
-					<!-- <li>
-						<a href="#">关于我们</a>
-					</li> -->
+					<li>
+            <router-link to="Aboutus">
+							关于我们
+						</router-link>
+					</li>
 				</ul>
 			</div>
 			<div class="hotline fr clearfix">
