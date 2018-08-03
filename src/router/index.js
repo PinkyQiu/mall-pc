@@ -7,6 +7,7 @@ import goodsDetail from "@/components/goodsDetail";
 import Login from "@/components/Login/Login";
 import Person from "@/components/Person/Person";
 import Aboutus from "@/components/Aboutus/Aboutus";
+import SettledIn from "@/components/SettledIn/SettledIn";
 import store from "../vuex";
 import { Message } from "element-ui";
 
@@ -56,6 +57,11 @@ const AppRouter = new Router({
       path: "/aboutus",
       name: "Aboutus",
       component: Aboutus
+    },
+    {
+      path: "/settledIn",
+      name: "SettledIn",
+      component: SettledIn
     },
     {
       path: "*",

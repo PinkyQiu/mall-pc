@@ -56,6 +56,11 @@
 							用户中心
 						</router-link>
 					</li>
+          <li>
+            <router-link to="SettledIn">
+							商家入驻
+						</router-link>
+					</li>
 					<li>
             <router-link to="Aboutus">
 							关于我们
